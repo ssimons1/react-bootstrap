@@ -35,7 +35,165 @@ const propTypes = {
 const defaultProps = {
   defaultExpanded: false,
 };
-
+/**
+ * @description
+ * A panel React component.
+ *
+ *
+ * @example
+ * //By default, all the `<Panel />` does is apply some basic border and padding to contain some content.
+ * //You can pass on any additional properties you need, e.g. a custom `onClick` handler, as it is shown in the example code. They all will apply to the wrapper `div` element.
+ *
+ * function handleClick() {
+ *  alert('You have clicked on me');
+ * }
+ *
+ * const panelInstance = (
+ *  <Panel onClick={ handleClick }>
+ *    Basic panel example
+ *  </Panel>
+ * );
+ *
+ * ReactDOM.render(panelInstance, mountNode);
+ *
+ *
+ * @example
+ * //Collapsible Panel
+ *
+ * class Example extends React.Component {
+ *  constructor(...args) {
+ *    super(...args);
+ *    this.state = {
+ *      open: true
+ *    };
+ *  }
+ *
+ *  render() {
+ *    return (
+ *      <div>
+ *        <Button onClick={ ()=> this.setState({ open: !this.state.open })}>
+ *          click
+ *        </Button>
+ *        <Panel collapsible expanded={this.state.open}>
+ *          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
+ *          Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+ *        </Panel>
+ *      </div>
+ *    );
+ *  }
+ * }
+ *
+ * ReactDOM.render(<Example/>, mountNode);
+ *
+ *
+ * @example
+ * //Panel with heading
+ * //Easily add a heading container to your panel with the `header` prop.
+ *
+ * const title = (
+ *  <h3>Panel title</h3>
+ * );
+ *
+ * const panelsInstance = (
+ *  <div>
+ *    <Panel header="Panel heading without title">
+ *      Panel content
+ *    </Panel>
+ *    <Panel header={title}>
+ *      Panel content
+ *    </Panel>
+ *  </div>
+ * );
+ *
+ * ReactDOM.render(panelsInstance, mountNode);
+ *
+ * &nbsp;
+ * Panel with footer
+ * Pass buttons or secondary text in the `footer` prop. Note that panel footers do not inherit colors and borders when using contextual variations as they are not meant to be in the foreground.
+ *
+ * const panelInstance = (
+ *  <Panel footer="Panel footer">
+ *    Panel content
+ *  </Panel>
+ * );
+ *
+ * ReactDOM.render(panelInstance, mountNode);
+ *
+ *
+ * @example
+ * //Contextual alternatives
+ * //Like other components, easily make a panel more meaningful to a particular context by adding a `bsStyle` prop.
+ *
+ * const title = (
+ *  <h3>Panel title</h3>
+ * );
+ *
+ * const panelsInstance = (
+ *  <div>
+ *    <Panel header={title}>
+ *      Panel content
+ *    </Panel>
+ *
+ *    <Panel header={title} bsStyle="primary">
+ *      Panel content
+ *    </Panel>
+ *
+ *    <Panel header={title} bsStyle="success">
+ *      Panel content
+ *    </Panel>
+ *
+ *    <Panel header={title} bsStyle="info">
+ *      Panel content
+ *    </Panel>
+ *
+ *    <Panel header={title} bsStyle="warning">
+ *      Panel content
+ *    </Panel>
+ *
+ *    <Panel header={title} bsStyle="danger">
+ *      Panel content
+ *    </Panel>
+ *  </div>
+ * );
+ *
+ * ReactDOM.render(panelsInstance, mountNode);
+ *
+ * @example
+ * //With tables and list groups
+ * //Add the `fill` prop to `<Table />` or `<ListGroup />` elements to make them fill the panel.
+ *
+ * const panelInstance = (
+ *  <Panel collapsible defaultExpanded header="Panel heading">
+ *    Some default panel content here.
+ *    <ListGroup fill>
+ *      <ListGroupItem>Item 1</ListGroupItem>
+ *      <ListGroupItem>Item 2</ListGroupItem>
+ *      <ListGroupItem>&hellip;</ListGroupItem>
+ *    </ListGroup>
+ *    Some more panel content here.
+ *  </Panel>
+ * );
+ *
+ * ReactDOM.render(panelInstance, mountNode);
+ *
+ * @property {success|warning|danger|info|default|primary} bsStyle - Component visual or contextual style variants.
+ * @property {PropTypes.bool} collapsible
+ * @property {PropTypes.func} onSelect
+ * @property {node} header
+ * @property {string|number} id
+ * @property {node} footer
+ * @property {PropTypes.bool} defaultExpanded
+ * @property {PropTypes.bool} expanded
+ * @property {*} eventKey
+ * @property {string} headerRole
+ * @property {string} panelRole
+ * @property {PropTypes.func} onEnter - Callback fired before the component expands.
+ * @property {PropTypes.func} onEntering - Callback fired after the component starts to expand.
+ * @property {PropTypes.func} onEntered - Callback fired after the component has expanded.
+ * @property {PropTypes.func} onExit - Callback fired before the component collapses.
+ * @property {PropTypes.func} onExiting - Callback fired after the component starts to collapse.
+ * @property {PropTypes.func} onExited - Callback fired after the component has collapsed.
+ */
 class Panel extends React.Component {
   constructor(props, context) {
     super(props, context);

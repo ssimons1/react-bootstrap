@@ -1,3 +1,11 @@
+/**
+ * @description
+ * Splits component props between parent and child
+ * @name splitComponentProps
+ * @param {object} Component
+ * @param {object} props
+ * @returns {Array}
+ */
 export default function splitComponentProps(props, Component) {
   const componentPropTypes = Component.propTypes;
 

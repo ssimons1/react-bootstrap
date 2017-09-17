@@ -10,6 +10,7 @@ import ValidComponentChildren from './utils/ValidComponentChildren';
 const ROUND_PRECISION = 1000;
 
 /**
+ * @description
  * Validate that children, if any, are instances of `<ProgressBar>`.
  */
 function onlyProgressBar(props, propName, componentName) {
@@ -42,13 +43,37 @@ function onlyProgressBar(props, propName, componentName) {
 }
 
 const propTypes = {
+  /**
+   * @property {number} min - Default: 0
+   */
   min: PropTypes.number,
+  /**
+   * @property {number} now
+   */
   now: PropTypes.number,
+  /**
+   * @property {number} max - Default: 100
+   */
   max: PropTypes.number,
+  /**
+   * @property {node} label
+   */
   label: PropTypes.node,
+  /**
+   * @property {boolean} srOnly - Default: false
+   */
   srOnly: PropTypes.bool,
+  /**
+   * @property {boolean} striped - Default: false
+   */
   striped: PropTypes.bool,
+  /**
+   * @property {boolean} active - Default: false
+   */
   active: PropTypes.bool,
+  /**
+   * @property {onlyProgressBar} children
+   */
   children: onlyProgressBar,
 
   /**
@@ -70,7 +95,102 @@ function getPercentage(now, min, max) {
   const percentage = (now - min) / (max - min) * 100;
   return Math.round(percentage * ROUND_PRECISION) / ROUND_PRECISION;
 }
+/**
+ * @description
+ * Provide up-to-date feedback on the progress of a workflow or action with simple yet flexible progress bars.
+ *
+ * @example:
+ * //Default progress bar.
+ *
+ * const progressInstance = (
+ *   <ProgressBar now={60} />
+ * );
+ *
+ * ReactDOM.render(progressInstance, mountNode);
+ *
+ * @example
+ * //With label:
+ * //Add a `label` prop to show a visible percentage. For low percentages, consider adding a min-width to ensure the label's text is fully visible.
+ *
+ * const now = 60;
+ *
+ * const progressInstance = (
+ *   <ProgressBar now={now} label={`${now}%`} />
+ * );
+ *
+ * ReactDOM.render(progressInstance, mountNode);
+ *
+ * @example
+ * //Screenreader only label:
+ * //Add a `srOnly` prop to hide the label visually.
+ *
+ * const now = 60;
+ *
+ * const progressInstance = (
+ *   <ProgressBar now={now} label={`${now}%`} srOnly />
+ * );
+ *
+ * ReactDOM.render(progressInstance, mountNode);
+ *
+ * @example
+ * //Contextual alternatives:
+ * //Progress bars use some of the same button and alert classes for consistent styles.
+ *
+ * const progressInstance = (
+ *  <div>
+ *    <ProgressBar bsStyle="success" now={40} />
+ *    <ProgressBar bsStyle="info" now={20} />
+ *    <ProgressBar bsStyle="warning" now={60} />
+ *    <ProgressBar bsStyle="danger" now={80} />
+ *  </div>
+ * );
+ *
+ * ReactDOM.render(progressInstance, mountNode);
+ *
+ * @example
+ * //Striped:
+ * //Uses a gradient to create a striped effect. Not available in IE8.
+ *
+ * const progressInstance = (
+ *  <div>
+ *    <ProgressBar striped bsStyle="success" now={40} />
+ *    <ProgressBar striped bsStyle="info" now={20} />
+ *    <ProgressBar striped bsStyle="warning" now={60} />
+ *    <ProgressBar striped bsStyle="danger" now={80} />
+ *  </div>
+ * );
+ *
+ * ReactDOM.render(progressInstance, mountNode);
+ *
+ *
+ * Animated:
+ * Add `active` prop to animate the stripes right to left. Not available in IE9 and below.
+ *
+ * const progressInstance = (
+ *   <ProgressBar active now={45} />
+ * );
+ *
+ * ReactDOM.render(progressInstance, mountNode);
+ *
+ * Stacked
+ * Nest `<ProgressBar />`s to stack them.
+ *
+ * const progressInstance = (
+ *  <ProgressBar>
+ *    <ProgressBar striped bsStyle="success" now={35} key={1} />
+ *    <ProgressBar bsStyle="warning" now={20} key={2} />
+ *    <ProgressBar active bsStyle="danger" now={10} key={3} />
+ *  </ProgressBar>
+ * );
+ *
+ * ReactDOM.render(progressInstance, mountNode);
+ *
+ */
 
+ /**
+  * @property {string} bsClass - Default: 'progress-bar'. Base CSS class and prefix for the component. Generally one should only change bsClass to provide new, non-Bootstrap, CSS styles for a component.
+  * @property {success|warning|danger|info} bsStyle - Component visual or contextual style variants.
+  */
 class ProgressBar extends React.Component {
   renderProgressBar({
     min, now, max, label, srOnly, striped, active, className, style, ...props

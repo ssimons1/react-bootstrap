@@ -9,16 +9,17 @@ import createChainedFunction from './utils/createChainedFunction';
 
 const propTypes = {
   /**
-   * Highlight the menu item as active.
+   * @property {PropTypes.bool} active - Highlight the menu item as active.
    */
   active: PropTypes.bool,
 
   /**
-   * Disable the menu item, making it unselectable.
+   * @property {PropTypes.bool} disabled - Disable the menu item, making it unselectable.
    */
   disabled: PropTypes.bool,
 
   /**
+   * @property {PropTypes.bool} divider -
    * Styles the menu item as a horizontal rule, providing visual separation between
    * groups of menu items.
    */
@@ -32,31 +33,30 @@ const propTypes = {
   ),
 
   /**
-   * Value passed to the `onSelect` handler, useful for identifying the selected menu item.
+   * @property {*} eventKey - Value passed to the `onSelect` handler, useful for identifying the selected menu item.
    */
   eventKey: PropTypes.any,
 
   /**
-   * Styles the menu item as a header label, useful for describing a group of menu items.
+   * @property {PropTypes.bool} header - Styles the menu item as a header label, useful for describing a group of menu items.
    */
   header: PropTypes.bool,
 
   /**
-   * HTML `href` attribute corresponding to `a.href`.
+   * @property {string} href - HTML `href` attribute corresponding to `a.href`.
    */
   href: PropTypes.string,
 
   /**
-   * Callback fired when the menu item is clicked.
+   * @property {PropTypes.func} onClick - Callback fired when the menu item is clicked.
    */
   onClick: PropTypes.func,
 
   /**
+   * @property {PropTypes.func} onSelect -
    * Callback fired when the menu item is selected.
    *
-   * ```js
    * (eventKey: any, event: Object) => any
-   * ```
    */
   onSelect: PropTypes.func,
 };
@@ -66,7 +66,46 @@ const defaultProps = {
   disabled: false,
   header: false,
 };
-
+/**
+ * @description
+ * Represents a menu item in a dropdown.
+ * It supports the basic anchor properties `href`, `target`, `title`.
+ *
+ * It also supports different properties of the normal Bootstrap MenuItem.
+ * * `header`: To add a header label to sections
+ * * `divider`: Adds an horizontal divider between sections
+ * * `disabled`: shows the item as disabled, and prevents onSelect from firing
+ * * `eventKey`: passed to the callback
+ * * `onSelect`: a callback that is called when the user clicks the item.
+ *
+ * @example
+ * //The callback is called with the following arguments: `event` and `eventKey`.
+ * function onSelectAlert(eventKey) {
+ *  alert(`Alert from menu item.\neventKey: ${eventKey}`);
+ * }
+ * const MenuItems = (
+ *  <Clearfix>
+ *    <ul className="dropdown-menu open">
+ *      <MenuItem header>Header</MenuItem>
+ *      <MenuItem>link</MenuItem>
+ *      <MenuItem divider/>
+ *      <MenuItem header>Header</MenuItem>
+ *      <MenuItem>link</MenuItem>
+ *      <MenuItem disabled>disabled</MenuItem>
+ *      <MenuItem title="See? I have a title.">
+ *        link with title
+ *      </MenuItem>
+ *      <MenuItem eventKey={1} href="#someHref" onSelect={onSelectAlert}>
+ *        link that alerts
+ *      </MenuItem>
+ *    </ul>
+ *  </Clearfix>
+ * );
+ * ReactDOM.render(MenuItems, mountNode);
+ *
+ * @property {string} bsClass - Base CSS class and prefix for the component. Generally one should only change `bsClass` to provide new, non-Bootstrap, CSS styles for a component. Default is `dropdown`.
+ *
+ */
 class MenuItem extends React.Component {
   constructor(props, context) {
     super(props, context);

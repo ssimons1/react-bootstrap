@@ -6,7 +6,7 @@ import warning from 'warning';
 import { bsClass, getClassSet, splitBsProps } from './utils/bootstrapUtils';
 
 const propTypes = {
-  /**
+  /*
    * Uses `controlId` from `<FormGroup>` if not explicitly specified.
    */
   htmlFor: PropTypes.string,
@@ -20,7 +20,15 @@ const defaultProps = {
 const contextTypes = {
   $bs_formGroup: PropTypes.object,
 };
-
+/**
+ * @description
+ * Using a `<ControlLabel>` as a label for a `<FormControl>` ensure accessibility.
+ * For more info about `<FormControl>`, see [here](https://bitsrc.io/react-bootstrap/components/forms/forms-control).
+ *
+ * @property {string} bsClass - Base CSS class and prefix for the component. Generally one should only change `bsClass` to provide new, non-Bootstrap, CSS styles for a component. Default is `control-label`.
+ * @property {string} htmlFor - Uses `controlId` from `<FormGroup>` if not explicitly specified.
+ * @property {PropTypes.bool} srOnly
+ */
 class ControlLabel extends React.Component {
   render() {
     const formGroup = this.context.$bs_formGroup;

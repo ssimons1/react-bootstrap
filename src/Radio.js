@@ -10,13 +10,13 @@ const propTypes = {
   inline: PropTypes.bool,
   disabled: PropTypes.bool,
   title: PropTypes.string,
-  /**
+  /*
    * Only valid if `inline` is not set.
    */
   validationState: PropTypes.oneOf([
     'success', 'warning', 'error', null,
   ]),
-  /**
+  /*
    * Attaches a ref to the `<input>` element. Only functions can be used here.
    *
    * ```js
@@ -31,7 +31,15 @@ const defaultProps = {
   disabled: false,
   title: ''
 };
-
+/**
+ * @description
+ * A radio form control component for React.
+ * @property {string} bsClass - Base CSS class and prefix for the component. Generally one should only change `bsClass` to provide new, non-Bootstrap, CSS styles for a component. Default is `radio`.
+ * @property {PropTypes.bool} disabled - Default is `false`.
+ * @property {PropTypes.bool} inline - Default is `false`.
+ * @property {PropTypes.func} inputRef - Attaches a ref to the `<input>` element. Only functions can be used here.
+ * @property {success|error|warning} validationState - Only valid if `inline` is not set.
+ */
 class Radio extends React.Component {
   render() {
     const {

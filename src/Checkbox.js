@@ -10,19 +10,13 @@ const propTypes = {
   inline: PropTypes.bool,
   disabled: PropTypes.bool,
   title: PropTypes.string,
-  /**
+  /*
    * Only valid if `inline` is not set.
    */
   validationState: PropTypes.oneOf([
     'success', 'warning', 'error', null,
   ]),
-  /**
-   * Attaches a ref to the `<input>` element. Only functions can be used here.
-   *
-   * ```js
-   * <Checkbox inputRef={ref => { this.input = ref; }} />
-   * ```
-   */
+
   inputRef: PropTypes.func,
 };
 
@@ -31,7 +25,18 @@ const defaultProps = {
   disabled: false,
   title: '',
 };
-
+  /**
+   * @description
+   * Attaches a ref to the `<input>` element. Only functions can be used here.
+   * @property {string} bsClass - Base CSS class and prefix for the component. Generally one should only change `bsClass` to provide new, non-Bootstrap, CSS styles for a component.
+   * @property {PropTypes.bool} disabled - Default is `false`.
+   * @property {PropTypes.bool} inline - Default is `false`.
+   * @property {PropTypes.func} inputRef - Attaches a ref to the `<input>` element. Only functions can be used here.
+   * @property {success|error|warning} validationState - Only valid if `inline` is not set.
+   * @property {string} title - Default is an empty string.
+   * @example
+   * <Checkbox inputRef={ref => { this.input = ref; }} />
+   */
 class Checkbox extends React.Component {
   render() {
     const {

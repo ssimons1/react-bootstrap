@@ -11,12 +11,33 @@ import createChainedFunction from './utils/createChainedFunction';
 // TODO: This should use `componentClass` like other components.
 
 const propTypes = {
+  /**
+   * @property {elementType} componentClass
+   */
   componentClass: elementType,
+  /**
+   * @property {string} className
+   */
   className: PropTypes.string,
+  /**
+   * @property {*} eventKey
+   */
   eventKey: PropTypes.any,
+  /**
+   * @property {Proptypes.func} onSelect
+   */
   onSelect: PropTypes.func,
+  /**
+   * @property {PropTypes.bool} disabled
+   */
   disabled: PropTypes.bool,
+  /**
+   * @property {PropTypes.bool} active
+   */
   active: PropTypes.bool,
+    /**
+   * @property {Proptypes.func} onClick
+   */
   onClick: PropTypes.func,
 };
 
@@ -25,7 +46,10 @@ const defaultProps = {
   active: false,
   disabled: false
 };
-
+/**
+ * @description
+ * Pagination button for internal use with the pagination component
+ */
 class PaginationButton extends React.Component {
   constructor(props, context) {
     super(props, context);

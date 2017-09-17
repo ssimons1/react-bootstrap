@@ -22,7 +22,17 @@ const defaultProps = {
   animateIn: false,
   animateOut: false,
 };
-
+/**
+ * @description
+ * Represents a single Carousel item.
+ * props:
+ * @property {prev|next} direction
+ * @property {PropTypes.func} onAnimateOutEnd
+ * @property {PropTypes.bool} active
+ * @property {PropTypes.bool} animateIn
+ * @property {PropTypes.bool} animateOur
+ * @property {number} index
+ */
 class CarouselItem extends React.Component {
   constructor(props, context) {
     super(props, context);

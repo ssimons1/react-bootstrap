@@ -8,7 +8,7 @@ import ValidComponentChildren from './utils/ValidComponentChildren';
 
 const propTypes = {
   /**
-   * You can use a custom element type for this component.
+   * @property {elementType} componentClass - You can use a custom element type for this component.
    *
    * If not specified, it will be treated as `'li'` if every child is a
    * non-actionable `<ListGroupItem>`, and `'div'` otherwise.
@@ -30,7 +30,24 @@ function getDefaultComponent(children) {
 
   return 'ul';
 }
+/**
+ * @description
+ * List groups are a flexible and powerful component for displaying not only simple lists of elements, but complex ones with custom content.
+ * @example
+ * const listgroupInstance = (
+ *  <ListGroup>
+ *    <ListGroupItem>Item 1</ListGroupItem>
+ *    <ListGroupItem>Item 2</ListGroupItem>
+ *    <ListGroupItem>...</ListGroupItem>
+ *  </ListGroup>
+ * );
+ *
+ * ReactDOM.render(listgroupInstance, mountNode);
+ */
 
+ /**
+  * @property {string} bsClass - Default: 'list-group'. Base CSS class and prefix for the component. Generally one should only change `bsClass` to provide new, non-Bootstrap, CSS styles for a component.
+  */
 class ListGroup extends React.Component {
   render() {
     const {

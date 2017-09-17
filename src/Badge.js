@@ -13,7 +13,21 @@ const propTypes = {
 const defaultProps = {
   pullRight: false,
 };
-
+/**
+ * @description
+ * Easily highlight new or unread items by adding a `<Badge>` to links, Bootstrap navs, and more.
+ *
+ * @example
+ * //Cross-browser compatibility
+ * //Unlike in regular Bootstrap, badges self collapse even in Internet Explorer 8.
+ *  const badgeInstance = (
+ *  <p>Badges <Badge>42</Badge></p>
+ * );
+ *
+ * ReactDOM.render(badgeInstance, mountNode);
+ *
+ *
+ */
 class Badge extends React.Component {
   hasContent(children) {
     let result = false;

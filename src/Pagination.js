@@ -7,18 +7,27 @@ import PaginationButton from './PaginationButton';
 import { bsClass, getClassSet, splitBsProps } from './utils/bootstrapUtils';
 
 const propTypes = {
+  /**
+   * @property {number} activePage - (default: 1)
+   */
   activePage: PropTypes.number,
+  /**
+   * @property {number} items - (default: 1)
+   */
   items: PropTypes.number,
+  /**
+   * @property {number} maxButtons - (default: 0)
+   */
   maxButtons: PropTypes.number,
 
   /**
-   * When `true`, will display the first and the last button page when
+   * @property {boolean} boundaryLinks - When `true`, will display the first and the last button page when
    * displaying ellipsis.
    */
   boundaryLinks: PropTypes.bool,
 
   /**
-   * When `true`, will display the default node value ('&hellip;').
+   * @property {boolean|node} ellipsis - When `true`, will display the default node value ('&hellip;').
    * Otherwise, will display provided node (when specified).
    */
   ellipsis: PropTypes.oneOfType([
@@ -26,7 +35,7 @@ const propTypes = {
   ]),
 
   /**
-   * When `true`, will display the default node value ('&laquo;').
+   * @property {boolean|node} first - When `true`, will display the default node value ('&laquo;').
    * Otherwise, will display provided node (when specified).
    */
   first: PropTypes.oneOfType([
@@ -34,7 +43,7 @@ const propTypes = {
   ]),
 
   /**
-   * When `true`, will display the default node value ('&raquo;').
+   * @property {boolean|node} last - When `true`, will display the default node value ('&raquo;').
    * Otherwise, will display provided node (when specified).
    */
   last: PropTypes.oneOfType([
@@ -42,7 +51,7 @@ const propTypes = {
   ]),
 
   /**
-   * When `true`, will display the default node value ('&lsaquo;').
+   * @property {boolean|node} prev - When `true`, will display the default node value ('&lsaquo;').
    * Otherwise, will display provided node (when specified).
    */
   prev: PropTypes.oneOfType([
@@ -50,17 +59,19 @@ const propTypes = {
   ]),
 
   /**
-   * When `true`, will display the default node value ('&rsaquo;').
+   * @property {boolean|node} next - When `true`, will display the default node value ('&rsaquo;').
    * Otherwise, will display provided node (when specified).
    */
   next: PropTypes.oneOfType([
     PropTypes.bool, PropTypes.node,
   ]),
-
+  /**
+   * @property {function} onSelect
+   */
   onSelect: PropTypes.func,
 
   /**
-   * You can use a custom element for the buttons
+   * @property {elementType} buttonComponentClass - You can use a custom element for the buttons
    */
   buttonComponentClass: elementType,
 };
@@ -76,7 +87,91 @@ const defaultProps = {
   ellipsis: true,
   boundaryLinks: false,
 };
-
+/**
+ * @description
+ * Provide pagination links for your site or app with the multi-page pagination component. Set `items` to the number of pages. `activePage` prop dictates which page is active
+ *
+ * @example:
+ * const PaginationBasic = React.createClass({
+ * getInitialState() {
+ *   return {
+ *     activePage: 1
+ *   };
+ * },
+ *
+ * handleSelect(eventKey) {
+ *   this.setState({
+ *     activePage: eventKey
+ *   });
+ * },
+ *
+ * render() {
+ *   return (
+ *     <div>
+ *       <Pagination
+ *         bsSize="large"
+ *         items={10}
+ *         activePage={this.state.activePage}
+ *         onSelect={this.handleSelect} />
+ *       <br />
+ *
+ *       <Pagination
+ *         bsSize="medium"
+ *         items={10}
+ *         activePage={this.state.activePage}
+ *         onSelect={this.handleSelect} />
+ *       <br />
+ *
+ *       <Pagination
+ *         bsSize="small"
+ *         items={10}
+ *         activePage={this.state.activePage}
+ *         onSelect={this.handleSelect} />
+ *     </div>
+ *   );
+ * }
+ * });
+ *
+ * ReactDOM.render(<PaginationBasic />, mountNode);
+ *
+ * @example
+ * //More options:
+ * //Such as `first`, `last`, `previous`, `next`, `boundaryLinks` and `ellipsis`.
+ *
+ * const PaginationAdvanced = React.createClass({
+ * getInitialState() {
+ *   return {
+ *     activePage: 1
+ *   };
+ * },
+ *
+ * handleSelect(eventKey) {
+ *   this.setState({
+ *     activePage: eventKey
+ *   });
+ * },
+ *
+ * render() {
+ *   return (
+ *     <Pagination
+ *       prev
+ *       next
+ *       first
+ *       last
+ *       ellipsis
+ *       boundaryLinks
+ *       items={20}
+ *       maxButtons={5}
+ *       activePage={this.state.activePage}
+ *       onSelect={this.handleSelect} />
+ *   );
+ * }
+ * });
+ *
+ * ReactDOM.render(<PaginationAdvanced />, mountNode);
+ *
+ * @property {string} bsClass - (Default: 'pagination') Base CSS class and prefix for the component. Generally one should only change bsClass to provide new, non-Bootstrap, CSS styles for a component.
+ */
 class Pagination extends React.Component {
   renderPageButtons(
     activePage, items, maxButtons, boundaryLinks, ellipsis, buttonProps

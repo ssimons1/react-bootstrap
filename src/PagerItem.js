@@ -6,11 +6,29 @@ import SafeAnchor from './SafeAnchor';
 import createChainedFunction from './utils/createChainedFunction';
 
 const propTypes = {
+  /**
+   * @property {PropTypes.bool} disabled
+   */
   disabled: PropTypes.bool,
+  /**
+   * @property {PropTypes.bool} previous
+   */
   previous: PropTypes.bool,
+  /**
+   * @property {PropTypes.bool} next
+   */
   next: PropTypes.bool,
+  /**
+   * @property {PropTypes.func} onClick
+   */
   onClick: PropTypes.func,
+  /**
+   * @property {PropTypes.func} onSelect
+   */
   onSelect: PropTypes.func,
+  /**
+   * @property {*} eventKey
+   */
   eventKey: PropTypes.any,
 };
 
@@ -19,7 +37,36 @@ const defaultProps = {
   previous: false,
   next: false,
 };
-
+/**
+ * @description
+ * Represents an item in a <Pager>.
+ *
+ * @example
+ * //Aligned
+ * //Set the `previous` or `next` prop to `true`, to align left or right.
+ *
+ * const pagerInstance = (
+ *  <Pager>
+ *    <Pager.Item previous href="#">&larr; Previous Page</Pager.Item>
+ *    <Pager.Item next href="#">Next Page &rarr;</Pager.Item>
+ *  </Pager>
+ * );
+ *
+ * ReactDOM.render(pagerInstance, mountNode);
+ *
+ * @example
+ * //Disabled
+ * //Set the `disabled` prop to `true` to disable the link.
+ *
+ * const pagerInstance = (
+ *  <Pager>
+ *    <Pager.Item previous href="#">&larr; Previous</Pager.Item>
+ *    <Pager.Item disabled next href="#">Next &rarr;</Pager.Item>
+ *  </Pager>
+ * );
+ *
+ * ReactDOM.render(pagerInstance, mountNode);
+ */
 class PagerItem extends React.Component {
   constructor(props, context) {
     super(props, context);

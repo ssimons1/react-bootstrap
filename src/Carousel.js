@@ -15,41 +15,76 @@ import ValidComponentChildren from './utils/ValidComponentChildren';
 // TODO: Use uncontrollable.
 
 const propTypes = {
+  /**
+   * @property {PropTypes.bool} slide
+   */
   slide: PropTypes.bool,
+  /**
+   * @property {PropTypes.bool} indicators - Default is `true`.
+   */
   indicators: PropTypes.bool,
   /**
+   *  @property {number} interval -
    * The amount of time to delay between automatically cycling an item.
    * If `null`, carousel will not automatically cycle.
    */
   interval: PropTypes.number,
+  /**
+   * @property {PropTypes.bool} controls - Default is `true`.
+   */
   controls: PropTypes.bool,
+  /**
+   * @property {PropTypes.bool} pauseOnHover
+   */
   pauseOnHover: PropTypes.bool,
+  /**
+   * @property {PropTypes.bool} wrap
+   */
   wrap: PropTypes.bool,
   /**
+   * @property {PropTypes.func} onSelect -
    * Callback fired when the active item changes.
    *
-   * ```js
    * (eventKey: any) => any | (eventKey: any, event: Object) => any
-   * ```
    *
    * If this callback takes two or more arguments, the second argument will
    * be a persisted event object with `direction` set to the direction of the
    * transition.
    */
   onSelect: PropTypes.func,
+  /**
+   * @property {PropTypes.func} onSlideEnd
+   */
   onSlideEnd: PropTypes.func,
+  /**
+   * @property {number} activeIndex
+   */
   activeIndex: PropTypes.number,
+  /**
+   * @property {number} defaultActiveIndex
+   */
   defaultActiveIndex: PropTypes.number,
+  /**
+   * @property {'prev'|'next'} direction
+   */
   direction: PropTypes.oneOf(['prev', 'next']),
+  /**
+   * @property {node} prevIcon - Default is `<Glyphicon glyph="chevron-left" />`.
+   */
   prevIcon: PropTypes.node,
   /**
+   * @property {string} prevLabel -
    * Label shown to screen readers only, can be used to show the previous element
    * in the carousel.
    * Set to null to deactivate.
    */
   prevLabel: PropTypes.string,
+  /**
+   * @property {node} nextIcon - Default is `<Glyphicon glyph="chevron-right" />`.
+   */
   nextIcon: PropTypes.node,
   /**
+   * @property {string} nextLabel -
    * Label shown to screen readers only, can be used to show the next element
    * in the carousel.
    * Set to null to deactivate.
@@ -69,7 +104,93 @@ const defaultProps = {
   nextIcon: <Glyphicon glyph="chevron-right" />,
   nextLabel: 'Next',
 };
-
+/**
+ * @description
+ * Represents a Carousel react component.
+ *
+ * @example
+ * //Uncontrolled
+ * const carouselInstance = (
+ *  <Carousel>
+ *    <Carousel.Item>
+ *      <img width={900} height={500} alt="900x500" src="/assets/carousel.png"/>
+ *      <Carousel.Caption>
+ *        <h3>First slide label</h3>
+ *        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+ *      </Carousel.Caption>
+ *    </Carousel.Item>
+ *    <Carousel.Item>
+ *      <img width={900} height={500} alt="900x500" src="/assets/carousel.png"/>
+ *      <Carousel.Caption>
+ *        <h3>Second slide label</h3>
+ *        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+ *      </Carousel.Caption>
+ *    </Carousel.Item>
+ *    <Carousel.Item>
+ *      <img width={900} height={500} alt="900x500" src="/assets/carousel.png"/>
+ *      <Carousel.Caption>
+ *        <h3>Third slide label</h3>
+ *        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+ *      </Carousel.Caption>
+ *    </Carousel.Item>
+ *  </Carousel>
+ * );
+ *
+ * ReactDOM.render(carouselInstance, mountNode);
+ *
+ * @example
+ * //Controlled
+ *
+ * const ControlledCarousel = React.createClass({
+ *  getInitialState() {
+ *    return {
+ *      index: 0,
+ *      direction: null
+ *    };
+ *  },
+ *
+ *  handleSelect(selectedIndex, e) {
+ *    alert('selected=' + selectedIndex + ', direction=' + e.direction);
+ *    this.setState({
+ *      index: selectedIndex,
+ *      direction: e.direction
+ *    });
+ *  },
+ *
+ *  render() {
+ *    return (
+ *      <Carousel activeIndex={this.state.index} direction={this.state.direction} onSelect={this.handleSelect}>
+ *        <Carousel.Item>
+ *          <img width={900} height={500} alt="900x500" src="/assets/carousel.png"/>
+ *          <Carousel.Caption>
+ *            <h3>First slide label</h3>
+ *            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+ *          </Carousel.Caption>
+ *        </Carousel.Item>
+ *        <Carousel.Item>
+ *          <img width={900} height={500} alt="900x500" src="/assets/carousel.png"/>
+ *          <Carousel.Caption>
+ *            <h3>Second slide label</h3>
+ *            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+ *          </Carousel.Caption>
+ *        </Carousel.Item>
+ *        <Carousel.Item>
+ *          <img width={900} height={500} alt="900x500" src="/assets/carousel.png"/>
+ *          <Carousel.Caption>
+ *            <h3>Third slide label</h3>
+ *            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+ *          </Carousel.Caption>
+ *        </Carousel.Item>
+ *      </Carousel>
+ *    );
+ *  }
+ * });
+ *
+ * ReactDOM.render(<ControlledCarousel />, mountNode);
+ *
+ *
+ * @property {string} bsClass - Base CSS class and prefix for the component. Generally one should only change `bsClass` to provide new, non-Bootstrap, CSS styles for a component. Default is `carousel`.
+ */
 class Carousel extends React.Component {
   constructor(props, context) {
     super(props, context);

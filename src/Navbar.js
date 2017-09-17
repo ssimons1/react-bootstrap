@@ -24,35 +24,35 @@ import createChainedFunction from './utils/createChainedFunction';
 
 const propTypes = {
   /**
-   * Create a fixed navbar along the top of the screen, that scrolls with the
+   * @property {PropTypes.bool} fixedTop - Create a fixed navbar along the top of the screen, that scrolls with the
    * page
    */
   fixedTop: PropTypes.bool,
   /**
-   * Create a fixed navbar along the bottom of the screen, that scrolls with
+   * @property {PropTypes.bool} fixedBottom - Create a fixed navbar along the bottom of the screen, that scrolls with
    * the page
    */
   fixedBottom: PropTypes.bool,
   /**
-   * Create a full-width navbar that scrolls away with the page
+   * @property {PropTypes.bool} staticTop - Create a full-width navbar that scrolls away with the page
    */
   staticTop: PropTypes.bool,
   /**
-   * An alternative dark visual style for the Navbar
+   * @property {PropTypes.bool} inverse - An alternative dark visual style for the Navbar
    */
   inverse: PropTypes.bool,
   /**
-   * Allow the Navbar to fluidly adjust to the page or container width, instead
+   * @property {PropTypes.bool} fluid - Allow the Navbar to fluidly adjust to the page or container width, instead
    * of at the predefined screen breakpoints
    */
   fluid: PropTypes.bool,
 
   /**
-   * Set a custom element for this component.
+   * @property {elementType} componentClass - Set a custom element for this component.
    */
   componentClass: elementType,
   /**
-   * A callback fired when the `<Navbar>` body collapses or expands. Fired when
+   * @property {PropTypes.func} onToggle - A callback fired when the `<Navbar>` body collapses or expands. Fired when
    * a `<Navbar.Toggle>` is clicked and called with the new `navExpanded`
    * boolean value.
    *
@@ -60,18 +60,16 @@ const propTypes = {
    */
   onToggle: PropTypes.func,
   /**
-   * A callback fired when a descendant of a child `<Nav>` is selected. Should
+   * @property {PropTypes.func} onSelect - A callback fired when a descendant of a child `<Nav>` is selected. Should
    * be used to execute complex closing or other miscellaneous actions desired
    * after selecting a descendant of `<Nav>`. Does nothing if no `<Nav>` or `<Nav>`
    * descendants exist. The callback is called with an eventKey, which is a
    * prop from the selected `<Nav>` descendant, and an event.
    *
-   * ```js
    * function (
    * 	Any eventKey,
    * 	SyntheticEvent event?
    * )
-   * ```
    *
    * For basic closing behavior after all `<Nav>` descendant onSelect events in
    * mobile viewports, try using collapseOnSelect.
@@ -82,7 +80,7 @@ const propTypes = {
    */
   onSelect: PropTypes.func,
   /**
-   * Sets `expanded` to `false` after the onSelect event of a descendant of a
+   * @property {PropTypes.bool} collapseOnSelect - Sets `expanded` to `false` after the onSelect event of a descendant of a
    * child `<Nav>`. Does nothing if no `<Nav>` or `<Nav>` descendants exist.
    *
    * The onSelect callback should be used instead for more complex operations
@@ -90,12 +88,14 @@ const propTypes = {
    */
   collapseOnSelect: PropTypes.bool,
   /**
-   * Explicitly set the visiblity of the navbar body
+   * @property {PropTypes.bool} expanded - Explicitly set the visiblity of the navbar body
    *
    * @controllable onToggle
    */
   expanded: PropTypes.bool,
-
+  /**
+   * @property {string} role
+   */
   role: PropTypes.string,
 };
 
@@ -117,7 +117,125 @@ const childContextTypes = {
     onSelect: PropTypes.func,
   })
 };
-
+/**
+ * @description
+ * Navbars are responsive meta components that serve as navigation headers for your application or site.
+ * They also support all the different Bootstrap classes as properties. Just camelCase the css class and remove navbar from it.
+ * For example `navbar-fixed-top` becomes the property `fixedTop`. The different properties are `fixedTop`, `fixedBottom`, `staticTop`, `inverse`, and `fluid`.
+ * You can also align elements to the right by specifying the `pullRight` prop on the `Nav`, and other sub-components.
+ *
+ * @example
+ * //Navbar Basic Example
+ *
+ * const navbarInstance = (
+ *  <Navbar>
+ *    <Navbar.Header>
+ *      <Navbar.Brand>
+ *        <a href="#">React-Bootstrap</a>
+ *      </Navbar.Brand>
+ *    </Navbar.Header>
+ *    <Nav>
+ *      <NavItem eventKey={1} href="#">Link</NavItem>
+ *      <NavItem eventKey={2} href="#">Link</NavItem>
+ *      <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
+ *        <MenuItem eventKey={3.1}>Action</MenuItem>
+ *        <MenuItem eventKey={3.2}>Another action</MenuItem>
+ *        <MenuItem eventKey={3.3}>Something else here</MenuItem>
+ *        <MenuItem divider />
+ *        <MenuItem eventKey={3.4}>Separated link</MenuItem>
+ *      </NavDropdown>
+ *    </Nav>
+ *  </Navbar>
+ * );
+ *
+ * ReactDOM.render(navbarInstance, mountNode);
+ *
+ * @example
+ * //Responsive Navbars
+ * //To have a mobile friendly Navbar, Add a `Navbar.Toggle` to your Header and wrap your Navs in a `Navbar.Collapse` component. The `Navbar` will automatically wire the toggle and collapse together!
+ * //Set the `defaultExpanded` prop to make the Navbar start expanded. Set `collapseOnSelect` to make the Navbar collapse automatically when the user selects an item. You can also finely control the collapsing behavior by using the `expanded` and `onToggle` props.
+ *
+ * const navbarInstance = (
+ *  <Navbar inverse collapseOnSelect>
+ *    <Navbar.Header>
+ *      <Navbar.Brand>
+ *        <a href="#">React-Bootstrap</a>
+ *      </Navbar.Brand>
+ *      <Navbar.Toggle />
+ *    </Navbar.Header>
+ *    <Navbar.Collapse>
+ *      <Nav>
+ *        <NavItem eventKey={1} href="#">Link</NavItem>
+ *        <NavItem eventKey={2} href="#">Link</NavItem>
+ *        <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
+ *          <MenuItem eventKey={3.1}>Action</MenuItem>
+ *          <MenuItem eventKey={3.2}>Another action</MenuItem>
+ *          <MenuItem eventKey={3.3}>Something else here</MenuItem>
+ *          <MenuItem divider />
+ *          <MenuItem eventKey={3.3}>Separated link</MenuItem>
+ *        </NavDropdown>
+ *      </Nav>
+ *      <Nav pullRight>
+ *        <NavItem eventKey={1} href="#">Link Right</NavItem>
+ *        <NavItem eventKey={2} href="#">Link Right</NavItem>
+ *      </Nav>
+ *    </Navbar.Collapse>
+ *  </Navbar>
+ * );
+ *
+ * ReactDOM.render(navbarInstance, mountNode);
+ *
+ * @example
+ * //Forms
+ * //Use the `Navbar.Form` convenience component to apply proper margins and alignment to form components.
+ *
+ * const navbarInstance = (
+ *  <Navbar>
+ *    <Navbar.Header>
+ *      <Navbar.Brand>
+ *        <a href="#">Brand</a>
+ *      </Navbar.Brand>
+ *      <Navbar.Toggle />
+ *    </Navbar.Header>
+ *    <Navbar.Collapse>
+ *      <Navbar.Form pullLeft>
+ *        <FormGroup>
+ *          <FormControl type="text" placeholder="Search" />
+ *        </FormGroup>
+ *        {' '}
+ *        <Button type="submit">Submit</Button>
+ *      </Navbar.Form>
+ *    </Navbar.Collapse>
+ *  </Navbar>
+ * );
+ *
+ * ReactDOM.render(navbarInstance, mountNode);
+ *
+ * @example
+ * //Text and Non-nav links
+ * //Loose text and links can be wraped in the convenience components: `Navbar.Link` and `Navbar.Text`
+ *
+ * const navbarInstance = (
+ *  <Navbar>
+ *    <Navbar.Header>
+ *      <Navbar.Brand>
+ *        <a href="#">Brand</a>
+ *      </Navbar.Brand>
+ *      <Navbar.Toggle />
+ *    </Navbar.Header>
+ *    <Navbar.Collapse>
+ *      <Navbar.Text>
+ *        Signed in as: <Navbar.Link href="#">Mark Otto</Navbar.Link>
+ *      </Navbar.Text>
+ *      <Navbar.Text pullRight>
+ *        Have a great day!
+ *      </Navbar.Text>
+ *    </Navbar.Collapse>
+ *  </Navbar>
+ * );
+ *
+ * ReactDOM.render(navbarInstance, mountNode);
+ */
 class Navbar extends React.Component {
   constructor(props, context) {
     super(props, context);

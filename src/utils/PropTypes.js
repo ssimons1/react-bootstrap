@@ -2,7 +2,12 @@ import createChainableTypeChecker
   from 'prop-types-extra/lib/utils/createChainableTypeChecker';
 
 import ValidComponentChildren from './ValidComponentChildren';
-
+/**
+ * @description
+ * Used to ensure that a component has at least one child for each of the required bsRoles.
+ * @name requiredRoles
+ * @param {Array} roles
+ */
 export function requiredRoles(...roles) {
   return createChainableTypeChecker((props, propName, component) => {
     let missing;
@@ -29,7 +34,12 @@ export function requiredRoles(...roles) {
     return null;
   });
 }
-
+/**
+ * @description
+ * Used to ensure that a component has no more than a single child for each of the exclusive bsRoles.
+ * @name exclusiveRoles
+ * @param {Array} roles
+ */
 export function exclusiveRoles(...roles) {
   return createChainableTypeChecker((props, propName, component) => {
     let duplicate;

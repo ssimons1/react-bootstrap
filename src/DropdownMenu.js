@@ -25,7 +25,24 @@ const defaultProps = {
   bsRole: 'menu',
   pullRight: false,
 };
-
+/**
+ * @description
+ * `<Dropdown.Menu>` represents the menu of a `<Dropdown>` React component.
+ * Children components are `<MenuItem>`s.
+ * @example
+ *  <Dropdown.Menu>
+ *    <MenuItem eventKey="1">Item 1</MenuItem>
+ *    <MenuItem eventKey="2">Item 2</MenuItem>
+ *    <MenuItem eventKey="3">Item 3</MenuItem>
+ *    <MenuItem eventKey="4">Item 4</MenuItem>
+ *  </Dropdown.Menu>
+ * @property {PropTypes.bool} open
+ * @property {PropTypes.bool} pullRight
+ * @property {PropTypes.func} onClose
+ * @property {string|number} labelledBy
+ * @property {PropTypes.func} onSelect
+ * @property {click|mousedown} rootCloseEvent
+ */
 class DropdownMenu extends React.Component {
   constructor(props) {
     super(props);

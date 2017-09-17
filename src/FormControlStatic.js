@@ -11,7 +11,20 @@ const propTypes = {
 const defaultProps = {
   componentClass: 'p',
 };
-
+/**
+ * @description
+ * `<FormControl.Static>` renders static text.
+ * @example
+ *  <FormGroup>
+ *    <ControlLabel>Static text</ControlLabel>
+ *    <FormControl.Static>
+ *      email@example.com
+ *    </FormControl.Static>
+ *  </FormGroup>
+ *
+ * @property {string} bsClass - Base CSS class and prefix for the component. Generally one should only change `bsClass` to provide new, non-Bootstrap, CSS styles for a component. Default is `form-control-static`.
+ * @property {elementType} componentClass - You can use a custom element type for this component. Default is `p`.
+ */
 class FormControlStatic extends React.Component {
   render() {
     const { componentClass: Component, className, ...props } = this.props;

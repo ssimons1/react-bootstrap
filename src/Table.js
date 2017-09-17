@@ -20,7 +20,67 @@ const defaultProps = {
   responsive: false,
   striped: false,
 };
-
+/**
+ * @description
+ * A table React component.
+ * Use the `striped`, `bordered`, `condensed` and `hover` props to customise the table.
+ *
+ * @example
+ * //Responsive
+ * //Add `responsive` prop to make them scroll horizontally up to small devices (under 768px). When viewing on anything larger than 768px wide, you will not see any difference in these tables.
+ * const tableInstance = (
+ *  <Table responsive>
+ *    <thead>
+ *      <tr>
+ *        <th>#</th>
+ *        <th>Table heading</th>
+ *        <th>Table heading</th>
+ *        <th>Table heading</th>
+ *        <th>Table heading</th>
+ *        <th>Table heading</th>
+ *        <th>Table heading</th>
+ *      </tr>
+ *    </thead>
+ *    <tbody>
+ *      <tr>
+ *        <td>1</td>
+ *        <td>Table cell</td>
+ *        <td>Table cell</td>
+ *        <td>Table cell</td>
+ *        <td>Table cell</td>
+ *        <td>Table cell</td>
+ *        <td>Table cell</td>
+ *      </tr>
+ *      <tr>
+ *        <td>2</td>
+ *        <td>Table cell</td>
+ *        <td>Table cell</td>
+ *        <td>Table cell</td>
+ *        <td>Table cell</td>
+ *        <td>Table cell</td>
+ *        <td>Table cell</td>
+ *      </tr>
+ *      <tr>
+ *        <td>3</td>
+ *        <td>Table cell</td>
+ *        <td>Table cell</td>
+ *        <td>Table cell</td>
+ *        <td>Table cell</td>
+ *        <td>Table cell</td>
+ *        <td>Table cell</td>
+ *      </tr>
+ *    </tbody>
+ *  </Table>
+ * );
+ * ReactDOM.render(tableInstance, mountNode)
+ *
+ * @property {PropTypes.bool} bordered
+ * @property {string} bsClass - Base CSS class and prefix for the component. Generally one should only change `bsClass` to provide new, non-Bootstrap, CSS styles for a component. Default is `table`.
+ * @property {PropTypes.bool} condensed
+ * @property {PropTypes.bool} hover
+ * @property {PropTypes.bool} responsive
+ * @property {PropTypes.bool} striped
+ */
 class Table extends React.Component {
   render() {
     const {

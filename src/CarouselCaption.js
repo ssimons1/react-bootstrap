@@ -11,7 +11,11 @@ const propTypes = {
 const defaultProps = {
   componentClass: 'div',
 };
-
+/**
+ * @description
+ * A caption for a `<Carousel>` component.
+ * For more info about `<Carousel>`, see [here](https://bitsrc.io/react-bootstrap/react-bootstrap/carousels/carousel).
+ */
 class CarouselCaption extends React.Component {
   render() {
     const { componentClass: Component, className, ...props } = this.props;

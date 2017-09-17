@@ -12,12 +12,11 @@ import Fade from './Fade';
 
 const propTypes = {
   /**
-   * Uniquely identify the `<TabPane>` among its siblings.
+   * @property {*} eventKey - Uniquely identify the `<TabPane>` among its siblings.
    */
   eventKey: PropTypes.any,
-
   /**
-   * Use animation when showing or hiding `<TabPane>`s. Use `false` to disable,
+   * @property {PropTypes.bool|elementType} animation - Use animation when showing or hiding `<TabPane>`s. Use `false` to disable,
    * `true` to enable the default `<Fade>` animation or any `<Transition>`
    * component.
    */
@@ -28,51 +27,42 @@ const propTypes = {
 
   /** @private **/
   'aria-labelledby': PropTypes.string,
-
   /**
-   * If not explicitly specified and rendered in the context of a
+   * @property {string} bsClass - If not explicitly specified and rendered in the context of a
    * `<TabContent>`, the `bsClass` of the `<TabContent>` suffixed by `-pane`.
    * If otherwise not explicitly specified, `tab-pane`.
    */
   bsClass: PropTypes.string,
-
   /**
-   * Transition onEnter callback when animation is not `false`
+   * @property {PropTypes.func} onEnter - Transition onEnter callback when animation is not `false`
    */
   onEnter: PropTypes.func,
-
   /**
-   * Transition onEntering callback when animation is not `false`
+   * @property {PropTypes.func} onEntering - Transition onEntering callback when animation is not `false`
    */
   onEntering: PropTypes.func,
-
   /**
-   * Transition onEntered callback when animation is not `false`
+   * @property {PropTypes.func} onEntered - Transition onEntered callback when animation is not `false`
    */
   onEntered: PropTypes.func,
-
   /**
-   * Transition onExit callback when animation is not `false`
+   * @property {PropTypes.func} onExit - Transition onExit callback when animation is not `false`
    */
   onExit: PropTypes.func,
-
   /**
-   * Transition onExiting callback when animation is not `false`
+   * @property {PropTypes.func} onExiting - Transition onExiting callback when animation is not `false`
    */
   onExiting: PropTypes.func,
-
   /**
-   * Transition onExited callback when animation is not `false`
+   * @property {PropTypes.func} onExited - Transition onExited callback when animation is not `false`
    */
   onExited: PropTypes.func,
-
   /**
-   * Wait until the first "enter" transition to mount the tab (add it to the DOM)
+   * @property {PropTypes.bool} mountOnEnter - Wait until the first "enter" transition to mount the tab (add it to the DOM)
    */
   mountOnEnter: PropTypes.bool,
-
   /**
-   * Unmount the tab (remove it from the DOM) when it is no longer visible
+   * @property {PropTypes.bool} unmountOnExit - Unmount the tab (remove it from the DOM) when it is no longer visible
    */
   unmountOnExit: PropTypes.bool,
 };
@@ -103,7 +93,39 @@ const contextTypes = {
 const childContextTypes = {
   $bs_tabContainer: PropTypes.oneOf([null]),
 };
-
+/**
+ * @description
+ * Represents the content shown for a specific tab.
+ * @example
+ * const tabsInstance = (
+ *  <Tab.Container id="left-tabs-example" defaultActiveKey="first">
+ *    <Row className="clearfix">
+ *      <Col sm={4}>
+ *        <Nav bsStyle="pills" stacked>
+ *          <NavItem eventKey="first">
+ *            Tab 1
+ *          </NavItem>
+ *          <NavItem eventKey="second">
+ *            Tab 2
+ *          </NavItem>
+ *        </Nav>
+ *      </Col>
+ *      <Col sm={8}>
+ *        <Tab.Content animation>
+ *          <Tab.Pane eventKey="first">
+ *            Tab 1 content
+ *          </Tab.Pane>
+ *          <Tab.Pane eventKey="second">
+ *            Tab 2 content
+ *          </Tab.Pane>
+ *        </Tab.Content>
+ *      </Col>
+ *    </Row>
+ *  </Tab.Container>
+ * );
+ *
+ * ReactDOM.render(tabsInstance, mountNode);
+ */
 class TabPane extends React.Component {
   constructor(props, context) {
     super(props, context);

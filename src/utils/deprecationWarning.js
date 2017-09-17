@@ -1,5 +1,14 @@
+
 import warning from 'warning';
 
+/**
+ * @description
+ * Adds deprecation warning message
+ * @name deprecationWarning
+ * @param oldname
+ * @param newname
+ * @param link
+ */
 let warned = {};
 
 function deprecationWarning(oldname, newname, link) {

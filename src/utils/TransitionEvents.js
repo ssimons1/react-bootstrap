@@ -9,6 +9,8 @@
  * https://github.com/facebook/react/blob/v0.12.0/LICENSE
  * An additional grant of patent rights can be found here:
  * https://github.com/facebook/react/blob/v0.12.0/PATENTS
+ * @name detectEvents
+ * @returns {Array}
  */
 
 const canUseDOM = !!(
@@ -17,7 +19,7 @@ const canUseDOM = !!(
     window.document.createElement
   );
 
-/**
+/*
  * EVENT_NAME_MAP is used to determine which event fired when a
  * transition/animation ends, based on the style property used to
  * define that event.
@@ -86,7 +88,11 @@ function addEventListener(node, eventName, eventListener) {
 function removeEventListener(node, eventName, eventListener) {
   node.removeEventListener(eventName, eventListener, false);
 }
-
+/**
+ * @name addEndEventListener
+ * @param {element} node
+ * @param {func} eventListener
+ */
 const ReactTransitionEvents = {
   addEndEventListener(node, eventListener) {
     if (endEvents.length === 0) {
@@ -99,7 +105,11 @@ const ReactTransitionEvents = {
       addEventListener(node, endEvent, eventListener);
     });
   },
-
+/**
+ * @name removeEndEventListener
+ * @param {element} node
+ * @param {func} eventListener
+ */
   removeEndEventListener(node, eventListener) {
     if (endEvents.length === 0) {
       return;

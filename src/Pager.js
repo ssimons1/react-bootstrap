@@ -8,9 +8,31 @@ import createChainedFunction from './utils/createChainedFunction';
 import ValidComponentChildren from './utils/ValidComponentChildren';
 
 const propTypes = {
+     /**
+     * @property {PropTypes.func} onSelect
+     */
   onSelect: PropTypes.func,
 };
-
+/**
+ * @description
+ * Quick previous and next links.
+ *
+ * &nbsp;
+ * @example
+ * //Centers by default
+ *
+ * const pagerInstance = (
+ *  <Pager>
+ *    <Pager.Item href="#">Previous</Pager.Item>
+ *    {' '}
+ *    <Pager.Item href="#">Next</Pager.Item>
+ *  </Pager>
+ * );
+ *
+ * ReactDOM.render(pagerInstance, mountNode);
+ *
+ * @property {string} bsClass - Base CSS class and prefix for the component. Generally one should only change `bsClass` to provide new, non-Bootstrap, CSS styles for a component. Default is `pager`.
+ */
 class Pager extends React.Component {
   render() {
     const { onSelect, className, children, ...props } = this.props;

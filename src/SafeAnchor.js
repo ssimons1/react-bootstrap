@@ -5,16 +5,34 @@ import elementType from 'prop-types-extra/lib/elementType';
 import createChainedFunction from './utils/createChainedFunction';
 
 const propTypes = {
+  /**
+   * @property {string} href
+   */
   href: PropTypes.string,
+  /**
+   * @property {PropTypes.func} onClick
+   */
   onClick: PropTypes.func,
+  /**
+   * @property {PropTypes.func} onKeyDown
+   */
   onKeyDown: PropTypes.func,
+  /**
+   * @property {PropTypes.bool} disbled
+   */
   disabled: PropTypes.bool,
+  /**
+   * @property {string} role
+   */
   role: PropTypes.string,
+  /**
+   * @property {number|string} tabIndex
+   */
   tabIndex: PropTypes.oneOfType([
     PropTypes.number, PropTypes.string,
   ]),
   /**
-   * this is sort of silly but needed for Button
+   * @property {elementType} componentClass - this is sort of silly but needed for Button
    */
   componentClass: elementType,
 };
@@ -28,6 +46,7 @@ function isTrivialHref(href) {
 }
 
 /**
+ * @description
  * There are situations due to browser quirks or Bootstrap CSS where
  * an anchor tag is needed, when semantically a button tag is the
  * better choice. SafeAnchor ensures that when an anchor is used like a

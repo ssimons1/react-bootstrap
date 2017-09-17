@@ -5,29 +5,24 @@ import Button from './Button';
 
 const propTypes = {
   /**
-   * The `<input>` `type`
-   * @type {[type]}
+   * @property {checkbox|radio} type - The `<input>` `type`
    */
   type: PropTypes.oneOf(['checkbox', 'radio']),
-
   /**
-   * The HTML input name, used to group like checkboxes or radio buttons together
+   * @property {string} name - The HTML input name, used to group like checkboxes or radio buttons together
    * semantically
    */
   name: PropTypes.string,
-
   /**
-   * The checked state of the input, managed by `<ToggleButtonGroup>`` automatically
+   * @property {boolean} checked - The checked state of the input, managed by `<ToggleButtonGroup>`` automatically
    */
   checked: PropTypes.bool,
-
   /**
-   * The disabled state of both the label and input
+   * @property {function} onChange
    */
   disabled: PropTypes.bool,
-
   /**
-   * [onChange description]
+   * @property {any} - (required) The value of the input, and unique identifier in the ToggleButtonGroup
    */
   onChange: PropTypes.func,
   /**
@@ -35,7 +30,37 @@ const propTypes = {
    */
   value: PropTypes.any.isRequired,
 };
-
+/**
+ * @description
+ * For checkboxes or radio buttons styled as Buttons, you can can use the `ToggleButtonGroup` and `ToggleButton` components.
+ * @example
+ * //Checkbox example:
+ * const toggleButtonGroup = (
+ * <ToggleButtonGroup type="checkbox" defaultValue={[1, 3]}>
+ *   <ToggleButton value={1}>Checkbox 1 (pre-checked)</ToggleButton>
+ *   <ToggleButton value={2}>Checkbox 3</ToggleButton>
+ *
+ *   <ToggleButton value={3}>Checkbox 3 (pre-checked)</ToggleButton>
+ * </ToggleButtonGroup>
+ * );
+ *
+ * ReactDOM.render(toggleButtonGroup, mountNode);
+ *
+ * @example
+ * //Radio example:
+ * const buttonGroupInstance = (
+ * <ToggleButtonGroup type="radio" name="options" defaultValue={1}>
+ *   <ToggleButton value={1}>
+ *     Radio 1 (pre-checked)
+ *   </ToggleButton>
+ *   <ToggleButton value={2}>Radio 3</ToggleButton>
+ *
+ *   <ToggleButton value={3}>Radio 3</ToggleButton>
+ * </ToggleButtonGroup>
+ * );
+ *
+ * ReactDOM.render(buttonGroupInstance, mountNode);
+ */
 class ToggleButton extends React.Component {
   render() {
     const {

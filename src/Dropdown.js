@@ -24,11 +24,13 @@ const MENU_ROLE = DropdownMenu.defaultProps.bsRole;
 
 const propTypes = {
   /**
+   * @property {PropTypes.bool} dropup -
    * The menu will open above the dropdown button, instead of below it.
    */
   dropup: PropTypes.bool,
 
   /**
+   * @property {string|number} id -
    * An html id attribute, necessary for assistive technologies, such as screen readers.
    * @type {string|number}
    * @required
@@ -36,10 +38,13 @@ const propTypes = {
   id: isRequiredForA11y(PropTypes.oneOfType([
     PropTypes.string, PropTypes.number,
   ])),
-
+  /**
+   * @property {elementType} componentClass
+   */
   componentClass: elementType,
 
   /**
+   *  @property {node} children -
    * The children of a Dropdown may be a `<Dropdown.Toggle>` or a `<Dropdown.Menu>`.
    * @type {node}
    */
@@ -49,51 +54,56 @@ const propTypes = {
   ),
 
   /**
+   * @property {PropTypes.bool} disabled
    * Whether or not component is disabled.
    */
   disabled: PropTypes.bool,
 
   /**
+   * @property {PropTypes.bool} pullRight -
    * Align the menu to the right side of the Dropdown toggle
    */
   pullRight: PropTypes.bool,
 
   /**
+   * @property {PropTypes.bool} open -
    * Whether or not the Dropdown is visible.
    *
    * @controllable onToggle
    */
   open: PropTypes.bool,
-
+  /**
+   * @property {PropTypes.bool} defaultOpen
+   */
   defaultOpen: PropTypes.bool,
 
   /**
+   * @property {PropTypes.func} onToggle -
    * A callback fired when the Dropdown wishes to change visibility. Called with the requested
    * `open` value, the DOM event, and the source that fired it: `'click'`,`'keydown'`,`'rootClose'`, or `'select'`.
    *
-   * ```js
    * function(Boolean isOpen, Object event, { String source }) {}
-   * ```
    * @controllable open
    */
   onToggle: PropTypes.func,
 
   /**
+   * @property {PropTypes.func} onSelect -
    * A callback fired when a menu item is selected.
    *
-   * ```js
    * (eventKey: any, event: Object) => any
-   * ```
    */
   onSelect: PropTypes.func,
 
   /**
+   * @property {string} role -
    * If `'menuitem'`, causes the dropdown to behave like a menu item rather than
    * a menu button.
    */
   role: PropTypes.string,
 
   /**
+   * @property {click|mousedown} rootCloseEvent
    * Which event when fired outside the component will cause it to be closed
    */
   rootCloseEvent: PropTypes.oneOf(['click', 'mousedown']),
@@ -111,7 +121,126 @@ const propTypes = {
 const defaultProps = {
   componentClass: ButtonGroup,
 };
-
+/**
+ * @description
+ * If the default handling of the dropdown menu and toggle components aren't to your liking, you can customize them, by using the more basic `Dropdown` Component to explicitly specify the Toggle and Menu components.
+ *
+ * @example
+ * const dropdownInstance = (
+ *  <ButtonToolbar>
+ *    <Dropdown id="dropdown-custom-1">
+ *      <Dropdown.Toggle>
+ *        <Glyphicon glyph="star" />
+ *        Pow! Zoom!
+ *      </Dropdown.Toggle>
+ *      <Dropdown.Menu className="super-colors">
+ *        <MenuItem eventKey="1">Action</MenuItem>
+ *        <MenuItem eventKey="2">Another action</MenuItem>
+ *        <MenuItem eventKey="3" active>Active Item</MenuItem>
+ *        <MenuItem divider />
+ *        <MenuItem eventKey="4">Separated link</MenuItem>
+ *      </Dropdown.Menu>
+ *    </Dropdown>
+ *
+ *    <Dropdown id="dropdown-custom-2">
+ *      <Button bsStyle="info">
+ *        mix it up style-wise
+ *      </Button>
+ *      <Dropdown.Toggle bsStyle="success"/>
+ *      <Dropdown.Menu className="super-colors">
+ *        <MenuItem eventKey="1">Action</MenuItem>
+ *        <MenuItem eventKey="2">Another action</MenuItem>
+ *        <MenuItem eventKey="3" active>Active Item</MenuItem>
+ *        <MenuItem divider />
+ *        <MenuItem eventKey="4">Separated link</MenuItem>
+ *      </Dropdown.Menu>
+ *    </Dropdown>
+ *
+ *  </ButtonToolbar>
+ * );
+ *
+ * ReactDOM.render(dropdownInstance, mountNode);
+ *
+ * @example
+ * //Custom Dropdown Components
+ * //For those that want to customize everything, you can forgo the included Toggle and Menu components, and create your own. In order to tell the Dropdown component what role your custom components play, add a special prop `bsRole` to your menu or toggle components. The Dropdown expects at least one component with `bsRole="toggle"` and exactly one with `bsRole="menu"`. Custom toggle and menu components must be able to accept refs.
+ * class CustomToggle extends React.Component {
+ *  constructor(props, context) {
+ *    super(props, context);
+ *
+ *    this.handleClick = this.handleClick.bind(this);
+ *  }
+ *
+ *  handleClick(e) {
+ *    e.preventDefault();
+ *
+ *    this.props.onClick(e);
+ *  }
+ *
+ *  render() {
+ *    return (
+ *      <a href="" onClick={this.handleClick}>
+ *        {this.props.children}
+ *      </a>
+ *    );
+ *  }
+ * }
+ *
+ * class CustomMenu extends React.Component {
+ *  constructor(props, context) {
+ *    super(props, context);
+ *
+ *    this.onChange = e => this.setState({ value: e.target.value });
+ *
+ *    this.state = { value: '' };
+ *  }
+ *
+ *  focusNext() {
+ *    const input = ReactDOM.findDOMNode(this.input);
+ *
+ *    if (input) {
+ *      input.focus();
+ *    }
+ *  }
+ *
+ *  render() {
+ *    const { children } = this.props;
+ *    const { value } = this.state;
+ *
+ *    return (
+ *      <div className="dropdown-menu" style={{ padding: '' }}>
+ *        <FormControl
+ *          ref={c => { this.input = c; }}
+ *          type="text"
+ *          placeholder="Type to filter..."
+ *          onChange={this.onChange}
+ *          value={this.state.value}
+ *        />
+ *        <ul className="list-unstyled">
+ *          {React.Children.toArray(children).filter(child => (
+ *            !value.trim() || child.props.children.indexOf(value) !== -1
+ *          ))}
+ *        </ul>
+ *      </div>
+ *    );
+ *  }
+ * }
+ *
+ * ReactDOM.render((
+ *  <Dropdown id="dropdown-custom-menu">
+ *    <CustomToggle bsRole="toggle">
+ *      Custom toggle
+ *    </CustomToggle>
+ *
+ *    <CustomMenu bsRole="menu">
+ *      <MenuItem eventKey="1">Red</MenuItem>
+ *      <MenuItem eventKey="2">Blue</MenuItem>
+ *      <MenuItem eventKey="3" active>Orange</MenuItem>
+ *      <MenuItem eventKey="1">Red-Orange</MenuItem>
+ *    </CustomMenu>
+ *  </Dropdown>
+ * ), mountNode);
+ */
 class Dropdown extends React.Component {
   constructor(props, context) {
     super(props, context);

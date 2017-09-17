@@ -8,11 +8,14 @@ import { Size } from './utils/StyleConfig';
 
 const propTypes = {
   /**
-   * A css class to apply to the Modal dialog DOM node.
+   * @property {string} dialogClassName - A css class to apply to the Modal dialog DOM node.
    */
   dialogClassName: PropTypes.string,
 };
-
+/**
+ * @description
+ * Represents the dialog part of a modal dialog. For more details, see [here](https://bitsrc.io/react-bootstrap/react-bootstrap/modals/modal).
+ */
 class ModalDialog extends React.Component {
   render() {
     const { dialogClassName, className, style, children, ...props } =

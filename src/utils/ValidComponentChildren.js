@@ -3,12 +3,12 @@
 import React from 'react';
 
 /**
+ * @description
  * Iterates through children that are typically specified as `props.children`,
  * but only maps over children that are "valid components".
  *
  * The mapFunction provided index will be normalised to the components mapped,
  * so an invalid component would not increase the index.
- *
  * @param {?*} children Children tree container.
  * @param {function(*, int)} func.
  * @param {*} context Context for func.
