@@ -2,12 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactTestUtils from 'react-dom/test-utils';
 
-import Modal from '../src/Modal';
+import ModalTitle from '../src/ModalTitle';
 
-describe('Modal.Title', () => {
+describe('ModalTitle', () => {
   it('uses "h4" by default', () => {
     const instance = ReactTestUtils.renderIntoDocument(
-      <Modal.Title />
+      <ModalTitle />
     );
 
     assert.equal(ReactDOM.findDOMNode(instance).nodeName, 'H4');
@@ -15,7 +15,7 @@ describe('Modal.Title', () => {
 
   it('has "modal-title" class', () => {
     const instance = ReactTestUtils.renderIntoDocument(
-      <Modal.Title />
+      <ModalTitle />
     );
 
     assert.include(ReactDOM.findDOMNode(instance).className, 'modal-title');
@@ -23,7 +23,7 @@ describe('Modal.Title', () => {
 
   it('should merge additional classes passed in', () => {
     const instance = ReactTestUtils.renderIntoDocument(
-      <Modal.Title className="custom-class" />
+      <ModalTitle className="custom-class" />
     );
     const classes = ReactDOM.findDOMNode(instance).className;
 
@@ -33,7 +33,7 @@ describe('Modal.Title', () => {
 
   it('should allow custom elements instead of "h4"', () => {
     const instance = ReactTestUtils.renderIntoDocument(
-      <Modal.Title componentClass="h3" />
+      <ModalTitle componentClass="h3" />
     );
 
     assert.equal(ReactDOM.findDOMNode(instance).nodeName, 'H3');
@@ -41,9 +41,9 @@ describe('Modal.Title', () => {
 
   it('should render children', () => {
     const instance = ReactTestUtils.renderIntoDocument(
-      <Modal.Title>
+      <ModalTitle>
         <strong>Children</strong>
-      </Modal.Title>
+      </ModalTitle>
     );
     assert.ok(ReactTestUtils.findRenderedDOMComponentWithTag(instance, 'strong'));
   });

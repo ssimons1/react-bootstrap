@@ -2,12 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactTestUtils from 'react-dom/test-utils';
 
-import Media from '../src/Media';
+import MediaHeading from '../src/MediaHeading';
 
-describe('Media.Heading', () => {
+describe('MediaHeading', () => {
   it('uses "h4" by default', () => {
     const instance = ReactTestUtils.renderIntoDocument(
-      <Media.Heading />
+      <MediaHeading />
     );
 
     assert.equal(ReactDOM.findDOMNode(instance).nodeName, 'H4');
@@ -15,7 +15,7 @@ describe('Media.Heading', () => {
 
   it('has "media-heading" class', () => {
     const instance = ReactTestUtils.renderIntoDocument(
-      <Media.Heading />
+      <MediaHeading />
     );
 
     assert.include(ReactDOM.findDOMNode(instance).className, 'media-heading');
@@ -23,7 +23,7 @@ describe('Media.Heading', () => {
 
   it('should merge additional classes passed in', () => {
     const instance = ReactTestUtils.renderIntoDocument(
-      <Media.Heading className="custom-class" />
+      <MediaHeading className="custom-class" />
     );
 
     assert.include(ReactDOM.findDOMNode(instance).className, 'media-heading');
@@ -32,7 +32,7 @@ describe('Media.Heading', () => {
 
   it('should allow custom elements instead of "h4"', () => {
     const instance = ReactTestUtils.renderIntoDocument(
-      <Media.Heading componentClass="h2" />
+      <MediaHeading componentClass="h2" />
     );
 
     assert.equal(ReactDOM.findDOMNode(instance).nodeName, 'H2');
@@ -40,9 +40,9 @@ describe('Media.Heading', () => {
 
   it('should render children', () => {
     const instance = ReactTestUtils.renderIntoDocument(
-      <Media.Heading>
+      <MediaHeading>
         <strong>Children</strong>
-      </Media.Heading>
+      </MediaHeading>
     );
     assert.ok(ReactTestUtils.findRenderedDOMComponentWithTag(instance, 'strong'));
   });

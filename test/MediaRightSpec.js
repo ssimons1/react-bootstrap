@@ -2,12 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactTestUtils from 'react-dom/test-utils';
 
-import Media from '../src/Media';
+import MediaRight from '../src/MediaRight';
 
-describe('Media.Right', () => {
+describe('MediaRight', () => {
   it('uses "div"', () => {
     const instance = ReactTestUtils.renderIntoDocument(
-      <Media.Right />
+      <MediaRight />
     );
 
     assert.equal(ReactDOM.findDOMNode(instance).nodeName, 'DIV');
@@ -15,7 +15,7 @@ describe('Media.Right', () => {
 
   it('has "media-right" class', () => {
     const instance = ReactTestUtils.renderIntoDocument(
-      <Media.Right />
+      <MediaRight />
     );
 
     assert.ok(ReactDOM.findDOMNode(instance).className.match(/\bmedia-right\b/));
@@ -23,7 +23,7 @@ describe('Media.Right', () => {
 
   it('should be able to change alignment to middle', () => {
     const instance = ReactTestUtils.renderIntoDocument(
-      <Media.Right align="middle" />
+      <MediaRight align="middle" />
     );
 
     assert.ok(ReactDOM.findDOMNode(instance).className.match(/\bmedia-middle\b/));
@@ -31,7 +31,7 @@ describe('Media.Right', () => {
 
   it('should be able to change alignment to bottom', () => {
     const instance = ReactTestUtils.renderIntoDocument(
-      <Media.Right align="bottom" />
+      <MediaRight align="bottom" />
     );
 
     assert.ok(ReactDOM.findDOMNode(instance).className.match(/\bmedia-bottom\b/));
@@ -39,7 +39,7 @@ describe('Media.Right', () => {
 
   it('should merge additional classes passed in', () => {
     const instance = ReactTestUtils.renderIntoDocument(
-      <Media.Right className="custom-class" />
+      <MediaRight className="custom-class" />
     );
 
     assert.include(ReactDOM.findDOMNode(instance).className, 'media-right');
@@ -48,9 +48,9 @@ describe('Media.Right', () => {
 
   it('should render children', () => {
     const instance = ReactTestUtils.renderIntoDocument(
-      <Media.Right>
+      <MediaRight>
         <img />
-      </Media.Right>
+      </MediaRight>
     );
     assert.ok(ReactTestUtils.findRenderedDOMComponentWithTag(instance, 'img'));
   });

@@ -2,12 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactTestUtils from 'react-dom/test-utils';
 
-import Media from '../src/Media';
+import MediaBody from '../src/MediaBody';
 
-describe('<Media.Body>', () => {
+describe('<MediaBody>', () => {
   it('uses "div" by default', () => {
     const instance = ReactTestUtils.renderIntoDocument(
-      <Media.Body />
+      <MediaBody />
     );
 
     assert.equal(ReactDOM.findDOMNode(instance).nodeName, 'DIV');
@@ -15,7 +15,7 @@ describe('<Media.Body>', () => {
 
   it('has "media-body" class', () => {
     const instance = ReactTestUtils.renderIntoDocument(
-      <Media.Body />
+      <MediaBody />
     );
 
     assert.include(ReactDOM.findDOMNode(instance).className, 'media-body');
@@ -23,7 +23,7 @@ describe('<Media.Body>', () => {
 
   it('should merge additional classes passed in', () => {
     const instance = ReactTestUtils.renderIntoDocument(
-      <Media.Body className="custom-class" />
+      <MediaBody className="custom-class" />
     );
     const classes = ReactDOM.findDOMNode(instance).className;
 
@@ -33,7 +33,7 @@ describe('<Media.Body>', () => {
 
   it('should allow custom elements instead of "div"', () => {
     const instance = ReactTestUtils.renderIntoDocument(
-      <Media.Body componentClass="section" />
+      <MediaBody componentClass="section" />
     );
 
     assert.equal(ReactDOM.findDOMNode(instance).nodeName, 'SECTION');
@@ -41,9 +41,9 @@ describe('<Media.Body>', () => {
 
   it('should render children', () => {
     const instance = ReactTestUtils.renderIntoDocument(
-      <Media.Body>
+      <MediaBody>
         <strong>Content</strong>
-      </Media.Body>
+      </MediaBody>
     );
     assert.ok(ReactTestUtils.findRenderedDOMComponentWithTag(instance, 'strong'));
   });

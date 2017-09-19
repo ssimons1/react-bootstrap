@@ -2,12 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactTestUtils from 'react-dom/test-utils';
 
-import Modal from '../src/Modal';
+import ModalHeader from '../src/ModalHeader';
 
-describe('Modal.Header', () => {
+describe('ModalHeader', () => {
   it('uses "div" by default', () => {
     const instance = ReactTestUtils.renderIntoDocument(
-      <Modal.Header />
+      <ModalHeader />
     );
 
     assert.equal(ReactDOM.findDOMNode(instance).nodeName, 'DIV');
@@ -15,7 +15,7 @@ describe('Modal.Header', () => {
 
   it('has "modal-header" class', () => {
     const instance = ReactTestUtils.renderIntoDocument(
-      <Modal.Header />
+      <ModalHeader />
     );
 
     assert.include(ReactDOM.findDOMNode(instance).className, 'modal-header');
@@ -23,7 +23,7 @@ describe('Modal.Header', () => {
 
   it('should merge additional classes passed in', () => {
     const instance = ReactTestUtils.renderIntoDocument(
-      <Modal.Header className="custom-class" />
+      <ModalHeader className="custom-class" />
     );
     const classes = ReactDOM.findDOMNode(instance).className;
 
@@ -33,9 +33,9 @@ describe('Modal.Header', () => {
 
   it('should render children', () => {
     const instance = ReactTestUtils.renderIntoDocument(
-      <Modal.Header>
+      <ModalHeader>
         <strong>Content</strong>
-      </Modal.Header>
+      </ModalHeader>
     );
 
     assert.ok(ReactTestUtils.findRenderedDOMComponentWithTag(instance, 'strong'));
@@ -43,7 +43,7 @@ describe('Modal.Header', () => {
 
   it('has closeButton without a containing Modal and renders', () => {
     const instance = ReactTestUtils.renderIntoDocument(
-      <Modal.Header closeButton />
+      <ModalHeader closeButton />
     );
 
     assert.isNotNull(ReactDOM.findDOMNode(instance));
@@ -52,7 +52,7 @@ describe('Modal.Header', () => {
   it('Should trigger onHide when modal is closed', () => {
     const onHideSpy = sinon.spy();
     const instance = ReactTestUtils.renderIntoDocument(
-      <Modal.Header closeButton onHide={onHideSpy} />
+      <ModalHeader closeButton onHide={onHideSpy} />
     );
 
     const closeButton = ReactTestUtils.findRenderedDOMComponentWithClass(
